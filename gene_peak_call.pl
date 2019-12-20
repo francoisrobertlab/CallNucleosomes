@@ -23,6 +23,7 @@ while($i=<NUC>){
 	#print "$temp[1]\t$temp[2]\t$peak\n";
 	$chr=$temp[1];
 	$chr=~s/chr//;
+    $gene=$temp[2];
 	$quartile=$temp[0];
 	$str=$temp[4];
 	$#tarray=-1;
@@ -40,7 +41,7 @@ while($i=<NUC>){
 	$tx = &peaks(\@starray,\@time);
 	@qarray=@{$tx};
 	print STDERR "$line $#qarray\n";
-	print OUT "track type=wiggle_0\nvariableStep  chrom=chr$chr\n";
+	print OUT "track type=wiggle_0 name=\"$gene\"\nvariableStep  chrom=chr$chr\n";
 	for($k=0;$k<=$#qarray;$k++){
 		print OUT "$qarray[$k] 45\n";
 	}
